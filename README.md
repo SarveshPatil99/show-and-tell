@@ -4,9 +4,9 @@
 
 1) Install Bazel [link](https://docs.bazel.build/versions/master/install.html) It is a build system.
 
-Ensure you have the latest tensorflow and numpy libraries.
+	Ensure you have the latest tensorflow and numpy libraries.
 
-Install [NLTK](http://www.nltk.org/install.html). Then, follow [this](http://www.nltk.org/data.html) to install the package 'punkt'
+	Install [NLTK](http://www.nltk.org/install.html). Then, follow [this](http://www.nltk.org/data.html) to install the package 'punkt'
 
 2) Download this repo as a .zip or clone it
 
