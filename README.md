@@ -1,80 +1,42 @@
-# TensorFlow Research Models
+# Show and Tell model using TensorFlow
 
-This folder contains machine learning models implemented by researchers in
-[TensorFlow](https://tensorflow.org). The models are maintained by their
-respective authors. To propose a model for inclusion, please submit a pull
-request.
+## How to run it:
 
-## Models
+1) Install Bazel [link](https://docs.bazel.build/versions/master/install.html) It is a build system.
+Ensure you have the latest tensorflow and numpy libraries.
+Install [NLTK](http://www.nltk.org/install.html). Then, follow [this](http://www.nltk.org/data.html) to install the package 'punkt'
 
--   [adversarial_crypto](adversarial_crypto): protecting communications with
-    adversarial neural cryptography.
--   [adversarial_text](adversarial_text): semi-supervised sequence learning with
-    adversarial training.
--   [attention_ocr](attention_ocr): a model for real-world image text
-    extraction.
--   [audioset](audioset): Models and supporting code for use with
-    [AudioSet](http://g.co/audioset).
--   [autoencoder](autoencoder): various autoencoders.
--   [brain_coder](brain_coder): Program synthesis with reinforcement learning.
--   [cognitive_mapping_and_planning](cognitive_mapping_and_planning):
-    implementation of a spatial memory based mapping and planning architecture
-    for visual navigation.
--   [compression](compression): compressing and decompressing images using a
-    pre-trained Residual GRU network.
--   [deep_speech](deep_speech): automatic speech recognition.
--   [deeplab](deeplab): deep labeling for semantic image segmentation.
--   [delf](delf): deep local features for image matching and retrieval.
--   [differential_privacy](differential_privacy): differential privacy for training
-    data.
--   [domain_adaptation](domain_adaptation): domain separation networks.
--   [gan](gan): generative adversarial networks.
--   [im2txt](im2txt): image-to-text neural network for image captioning.
--   [inception](inception): deep convolutional networks for computer vision.
--   [learning_to_remember_rare_events](learning_to_remember_rare_events): a
-    large-scale life-long memory module for use in deep learning.
--   [learning_unsupervised_learning](learning_unsupervised_learning): a
-    meta-learned unsupervised learning update rule.
--   [lexnet_nc](lexnet_nc): a distributed model for noun compound relationship
-    classification.
--   [lfads](lfads): sequential variational autoencoder for analyzing
-    neuroscience data.
--   [lm_1b](lm_1b): language modeling on the one billion word benchmark.
--   [lm_commonsense](lm_commonsense): commonsense reasoning using language models.
--   [maskgan](maskgan): text generation with GANs.
--   [namignizer](namignizer): recognize and generate names.
--   [neural_gpu](neural_gpu): highly parallel neural computer.
--   [neural_programmer](neural_programmer): neural network augmented with logic
-    and mathematic operations.
--   [next_frame_prediction](next_frame_prediction): probabilistic future frame
-    synthesis via cross convolutional networks.
--   [object_detection](object_detection): localizing and identifying multiple
-    objects in a single image.
--   [pcl_rl](pcl_rl): code for several reinforcement learning algorithms,
-    including Path Consistency Learning.
--   [ptn](ptn): perspective transformer nets for 3D object reconstruction.
--   [marco](marco): automating the evaluation of crystallization experiments.
--   [qa_kg](qa_kg): module networks for question answering on knowledge graphs.
--   [real_nvp](real_nvp): density estimation using real-valued non-volume
-    preserving (real NVP) transformations.
--   [rebar](rebar): low-variance, unbiased gradient estimates for discrete
-    latent variable models.
--   [resnet](resnet): deep and wide residual networks.
--   [seq2species](seq2species): deep learning solution for read-level taxonomic
-    classification.
--   [skip_thoughts](skip_thoughts): recurrent neural network sentence-to-vector
-    encoder.
--   [slim](slim): image classification models in TF-Slim.
--   [street](street): identify the name of a street (in France) from an image
-    using a Deep RNN.
--   [swivel](swivel): the Swivel algorithm for generating word embeddings.
--   [syntaxnet](syntaxnet): neural models of natural language syntax.
--   [tcn](tcn): Self-supervised representation learning from multi-view video.
--   [textsum](textsum): sequence-to-sequence with attention model for text
-    summarization.
--   [transformer](transformer): spatial transformer network, which allows the
-    spatial manipulation of data within the network.
--   [vid2depth](vid2depth): learning depth and ego-motion unsupervised from
-    raw monocular video.
--   [video_prediction](video_prediction): predicting future video frames with
-    neural advection.
+2) Download this repo as a .zip or clone it
+
+3) Download any of the desired checkpoint files:
+	[2M iterations finetuned checkpoint file](https://drive.google.com/open?id=1oWyegL4Z-rMlDGsYa3hIBma3tojdhZ9u)
+	[1M iterations checkpoint file](https://drive.google.com/open?id=1lOf3kEzM4aI_a9NmogosID4WQMIOTdEp)
+	
+	Put the files inside the folder named 'model'
+
+4) Install [Git](https://git-scm.com/) if you haven't already. Open the show-and-tell folder, and press right-click -> Git Bash here
+	Now, in the opened command terminal, type the following:
+	
+	```
+	
+	# No spaces around the = sign, will cause trouble
+	
+	# Path to the model checkpoint
+	# Note that you can also use model.ckpt-1000000
+	CHECKPOINT_PATH=model/model.ckpt-2000000
+	
+	# Path to the vocabulary file
+	VOCAB_PATH=model/word_counts.txt
+	
+	# Path to the image file you want to caption
+	IMAGE_PATH=model/test_images/1.jpg
+
+	# Build the inference binary, no need to run this while changing images
+	bazel build -c opt im2txt/run_inference
+
+	# Run inference to generate captions, this can take a while
+	bazel-bin/im2txt/run_inference --checkpoint_path=${CHECKPOINT_PATH} --vocab_file=${VOCAB_PATH} --input_files=${IMAGE_PATH}
+	
+	```
+	
+	You should see the output in the bash window itself.
