@@ -3,18 +3,23 @@
 ## How to run it:
 
 1) Install Bazel [link](https://docs.bazel.build/versions/master/install.html) It is a build system.
+
 Ensure you have the latest tensorflow and numpy libraries.
+
 Install [NLTK](http://www.nltk.org/install.html). Then, follow [this](http://www.nltk.org/data.html) to install the package 'punkt'
 
 2) Download this repo as a .zip or clone it
 
 3) Download any of the desired checkpoint files:
+
 	[2M iterations finetuned checkpoint file](https://drive.google.com/open?id=1oWyegL4Z-rMlDGsYa3hIBma3tojdhZ9u)
+	
 	[1M iterations checkpoint file](https://drive.google.com/open?id=1lOf3kEzM4aI_a9NmogosID4WQMIOTdEp)
 	
 	Put the files inside the folder named 'model'
 
 4) Install [Git](https://git-scm.com/) if you haven't already. Open the show-and-tell folder, and press right-click -> Git Bash here
+
 	Now, in the opened command terminal, type the following:
 	
 	```
